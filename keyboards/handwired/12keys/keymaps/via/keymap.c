@@ -13,17 +13,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include QMK_KEYBOARD_H
 
-#include "12keys.h"
+// Defines names for use in layer keycodes and the keymap
+enum layer_names {
+    _BASE
+};
 
-void testfn(void) {
-    SEND_STRING("testing");
-}
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    /* Base */
+    [_BASE] = LAYOUT_ortho_3x4(
+        KC_VOLU, KC_PGUP, KC_UP  , KC_PGDN,
+        KC_VOLD, KC_LEFT, KC_DOWN, KC_RGHT,
+        KC_MUTE, KC_HOME, KC_END , KC_PSCR
+    )
+};
 
-
-// using the pro micro led indicators
-bool led_update_keyboard(led_t led_state) {
-    writePinHigh(B0);
-    writePinHigh(D5);
-    return true;
-}
